@@ -294,6 +294,9 @@
   .max-w-\[75\%\] {
     max-width: 75%;
   }
+  .max-w-none {
+    max-width: none;
+  }
   .min-w-0 {
     min-width: calc(var(--spacing) * 0);
   }

@@ -4,6 +4,8 @@ import { useState, useRef, useEffect } from 'react';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface Message {
   sender: 'user' | 'bot';
@@ -42,7 +44,12 @@ export default function ChatBox() {
       <CardContent className="flex-1 overflow-y-auto space-y-4 p-4">
         {messages.map((msg, i) => (
           <div key={i} className={`p-3 rounded-xl max-w-[75%] ${msg.sender === 'user' ? 'ml-auto bg-primary text-primary-foreground' : 'mr-auto bg-muted text-muted-foreground'}`}>
-            {msg.text}
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              className="prose prose-sm dark:prose-invert max-w-none"
+            >
+              {msg.text}
+            </ReactMarkdown>
           </div>
         ))}
         <div ref={endRef} />
